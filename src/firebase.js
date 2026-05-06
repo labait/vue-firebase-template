@@ -94,3 +94,15 @@ export async function ensureUserAccount(user) {
     return false
   }
 }
+
+/**
+ * Legge il documento Firestore `accounts/{uid}` (dopo login / ensureUserAccount).
+ * @returns {Promise<object | null>} `{ id, ...fields }` o null se assente
+ */
+export async function getAccountByUid(uid) {
+  if (!uid) return null
+  const ref = doc(db, ACCOUNTS, uid)
+  const snap = await getDoc(ref)
+  if (!snap.exists()) return null
+  return { id: snap.id, ...snap.data() }
+}

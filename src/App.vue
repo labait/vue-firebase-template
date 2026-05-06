@@ -1,6 +1,11 @@
 <script setup>
+import { provide } from 'vue'
+import { createGlobalState, globalInjectionKey } from './composables/global.js'
 import Auth from './components/Auth.vue'
 import Test from './components/Test.vue'
+
+const global = createGlobalState()
+provide(globalInjectionKey, global)
 </script>
 
 <template>

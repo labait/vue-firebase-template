@@ -1,8 +1,14 @@
 <script setup>
+import { useGlobal } from '../composables/global.js'
+
+const global = useGlobal()
 </script>
 
 <template>
-  <div>
-    <h1>Test component</h1>
+  <div class="w-full max-w-lg space-y-2 text-left text-sm">
+    <h2 class="text-lg font-semibold">Test component</h2>
+    <pre>
+      {{ global }}
+    </pre>
   </div>
 </template>
