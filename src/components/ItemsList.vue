@@ -27,9 +27,7 @@ onMounted(loadItems)
 <template>
 	<section class="w-full max-w-4xl space-y-4">
 		<h2 class="text-xl font-semibold">Items</h2>
-
-		<p v-if="global.loading > 0" class="text-sm text-neutral-500">Caricamento elementi...</p>
-		<p v-else-if="items.length === 0" class="text-sm text-neutral-500">
+		<p v-if="items.length === 0" class="text-sm text-neutral-500">
 			Nessun elemento trovato nella collezione items.
 		</p>
 
@@ -37,10 +35,18 @@ onMounted(loadItems)
 			<article
 				v-for="item in items"
 				:key="item.id"
-				class="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm"
+				class="rounded-md  bg-white"
 			>
+				<figure>
+					<img
+						v-if="item.image"
+						:src="item.image"
+						:alt="item.title || 'Item Image'"
+						class="h-80 w-full object-cover grayscale cursor-pointer hover:grayscale-0 transition duration-300 rounded-md"
+					/>
+				</figure>
 				<h3 class="font-medium">{{ item.name || item.title || item.id }}</h3>
-				<p class="mt-1 text-sm text-neutral-600">ID: {{ item.id }}</p>
+				<p class="mt-1 text-sm text-neutral-600">{{ item.description }}</p>
 			</article>
 		</div>
 	</section>
