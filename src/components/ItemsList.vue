@@ -1,10 +1,12 @@
 <script setup>
 import { useGlobal } from '../composables/global.js'
+import { useRouter } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../firebase.js'
 
 const global = useGlobal()
+const router = useRouter()
 const items = ref([])
 
 async function loadItems() {
@@ -21,6 +23,10 @@ async function loadItems() {
 	}
 }
 
+function goToDetail(itemId) {
+	router.push({ name: 'itemDetail', params: { id: itemId } })
+}
+
 onMounted(loadItems)
 </script>
 
@@ -35,14 +41,15 @@ onMounted(loadItems)
 			<article
 				v-for="item in items"
 				:key="item.id"
-				class="rounded-md  bg-white"
+				class="rounded-md bg-white cursor-pointer "
+				@click="goToDetail(item.id)"
 			>
 				<figure>
 					<img
 						v-if="item.image"
 						:src="item.image"
 						:alt="item.title || 'Item Image'"
-						class="h-80 w-full object-cover grayscale cursor-pointer hover:grayscale-0 transition duration-300 rounded-md"
+						class="h-80 w-full object-cover grayscale hover:grayscale-0 transition duration-300 rounded-md"
 					/>
 				</figure>
 				<h3 class="font-medium">{{ item.name || item.title || item.id }}</h3>
