@@ -15,11 +15,13 @@ const user = ref(null)
 let unsubscribeAuth = () => {}
 
 onMounted(() => {
-  global.loading ++
+  
   unsubscribeAuth = onAuthStateChanged(auth, async (u) => {
+    global.loading ++
     user.value = u
     if (!u) {
       global.account = null
+      global.loading --
       return
     }
     try {
@@ -60,9 +62,9 @@ async function logout() {
 
 <template>
   <header
-    class="w-full border-b border-neutral-200 bg-white/80 px-4 py-3 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-950/80"
+    class="w-full"
   >
-    <div class="mx-auto flex max-w-2xl items-center justify-end gap-3">
+    <div class="mx-auto flex items-center justify-end gap-3">
       <template v-if="!user">
         <button
           type="button"

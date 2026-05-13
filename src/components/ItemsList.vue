@@ -31,7 +31,7 @@ onMounted(loadItems)
 </script>
 
 <template>
-	<section class="w-full max-w-4xl space-y-4">
+	<section class="w-full space-y-4">
 		<h2 class="text-xl font-semibold">Items</h2>
 		<p v-if="items.length === 0" class="text-sm text-neutral-500">
 			Nessun elemento trovato nella collezione items.
@@ -41,7 +41,7 @@ onMounted(loadItems)
 			<article
 				v-for="item in items"
 				:key="item.id"
-				class="rounded-md bg-white cursor-pointer "
+				class="rounded-md bg-white cursor-pointer mb-4"
 				@click="goToDetail(item.id)"
 			>
 				<figure>
@@ -49,10 +49,10 @@ onMounted(loadItems)
 						v-if="item.image"
 						:src="item.image"
 						:alt="item.title || 'Item Image'"
-						class="h-80 w-full object-cover grayscale hover:grayscale-0 transition duration-300 rounded-md"
+						class="h-80 w-full object-cover grayscale hover:grayscale-0 transition duration-300 rounded-md mb-2"
 					/>
 				</figure>
-				<h3 class="font-medium">{{ item.name || item.title || item.id }}</h3>
+				<h3 class="font-medium ">{{ item.name || item.title || item.id }}</h3>
 				<p class="mt-1 text-sm text-neutral-600">{{ item.description }}</p>
 			</article>
 		</div>

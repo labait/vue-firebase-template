@@ -28,7 +28,4 @@ onMounted(() => {
 
 
 <style scoped>
-.home-view {
-  padding: 2rem;
-}
 </style>

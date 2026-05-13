@@ -19,10 +19,10 @@ onMounted(() => {
   <Loading v-if="global.loading > 0" />
   <Dialog />
   <div class="min-h-screen flex flex-col">
-    <Auth />
     <main
-      class="mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center px-4 py-4"
+      class="mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center py-4"
     >
+      <Auth />
       <router-view />
     </main>
   </div>
